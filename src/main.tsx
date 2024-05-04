@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Home } from './pages/Home/index.js';
 import { Chat } from './pages/Chat/index.jsx';
+import { Preferences } from './pages/Preferences/index.jsx';
 
 import { startMirage } from './mocks/miragejs/index.js';
 
@@ -28,7 +29,12 @@ const router = createBrowserRouter([
   {
     path: "/chat",
     element: <Chat />,
+  },
+  {
+    path: "/preferences",
+    element: <Preferences />,
   }
+
 
 ]);
 
@@ -37,6 +43,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ToastContainer />
+    <div className='w-screen h-screen overflow-hidden'>
+
     <RouterProvider router={router} />
+    </div>
   </React.StrictMode>,
 )

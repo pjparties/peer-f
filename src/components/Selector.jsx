@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 export const Selector = () => {
   const [selection, setSelection] = useState([
     { type: "Pair Programming", select: false, id: 1 },
@@ -8,7 +7,7 @@ export const Selector = () => {
     { type: "Code Debug", select: false, id: 3 },
   ]);
   const sendData = () => {
-    const selectedIds = selected.map((item) => item.id);
+    const selectedIds = selection.map((item) => item.id);
     console.log(selectedIds);
 
     const obj = JSON.stringify({ preferences: selectedIds });
@@ -37,25 +36,7 @@ export const Selector = () => {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <div className="button-wrapper flex flex-row items-center gap-4 ">
-        {selection.map((item) => (
-          <button
-            key={item.type}
-            id={item.type}
-            className={`rounded-xl border-1 border-black px-4 py-2 transition ease-in-out duration-200 ${item.select ? "bg-primary scale-110" : "bg-omeglebg opacity-80"}`}
-            onClick={toggleSelect}
-          >
-            {item.type}
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-16 flex flex-col items-center">
-        <a href='/chat'>
-          <button className="rounded-xl border-1 bg-accent px-4 py-2 text-white font-semibold hover:bg-accentdark transition ease-in-out duration-500 ">
-            Start Chatting
-          </button>
-        </a>
+      <div className="mt-16 gap-2 flex flex-col items-center" id={`${selection.map.item?.id | "hello" }`}>
         {selection.map((item) => {
           return (
             <button
@@ -71,9 +52,11 @@ export const Selector = () => {
 
       <div className="mt-16 flex flex-col items-center">
         <div onClick={sendData}>
-          <button className="border-1 rounded-xl bg-accent px-4 py-2 font-semibold text-white transition duration-500 ease-in-out hover:bg-accentdark ">
-            Start Chatting
-          </button>
+          <a href='/chat'>
+            <button className="border-1 rounded-xl bg-accent px-4 py-2 font-semibold text-white transition duration-500 ease-in-out hover:bg-accentdark ">
+              Start Chatting
+            </button>
+          </a>
         </div>
       </div>
     </div>
