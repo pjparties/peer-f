@@ -7,8 +7,8 @@ import {
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Login } from './pages/Login/index.js';
-import { Chat } from './pages/Chat';
+import { Home } from './pages/Home/index.js';
+import { Chat } from './pages/Chat/index.jsx';
 
 import { startMirage } from './mocks/miragejs/index.js';
 
@@ -23,12 +23,13 @@ if(import.meta.env.DEV) {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: <Home />,
   },
   {
     path: "/chat",
     element: <Chat />,
   }
+
 ]);
 
 
