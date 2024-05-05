@@ -14,9 +14,10 @@ export const Chat = () => {
 
     // Connect to the socket server
     useEffect(() => {
-        const newSocket = io("http://localhost:8000");
-        setSocket(newSocket);
-
+        const newSocket = io("http://localhost:8000", {
+            transports:
+                ['websocket'],
+        });
         return () => {
             newSocket.disconnect();
         };

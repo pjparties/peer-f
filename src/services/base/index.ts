@@ -8,57 +8,57 @@ export default class BaseService<T> {
         this.baseUrl = BASE_URL;
     }
 
-    public  async GetAsync({
-        endpoint, 
-        params, 
+    public async GetAsync({
+        endpoint,
+        params,
         options
-    }: IGetInput) : Promise<T> {
+    }: IGetInput): Promise<T> {
         let requestUrl = `${this.baseUrl}/${endpoint}`
-        if(params) {
+        if (params) {
             requestUrl += `?${params}`;
         }
         return httpClient({
             url: requestUrl,
             options: {
-                method: 'GET', 
+                method: 'GET',
                 ...options
             }
         })
-        .then((response : T) => response)
-        .catch((ex) => {
-            throw new Error(ex);
-        });
+            .then((response: T) => response)
+            .catch((ex) => {
+                throw new Error(ex);
+            });
     }
 
-    public  async PostAsync({
-        endpoint, 
+    public async PostAsync({
+        endpoint,
         requestBody,
         options,
-    }: IPostInput) : Promise<T> {
+    }: IPostInput): Promise<T> {
         const requestUrl = `${this.baseUrl}/${endpoint}`
         return httpClient({
             url: requestUrl,
             options: {
                 ...options,
                 method: 'POST',
-                body: JSON.stringify(requestBody),                      
+                body: JSON.stringify(requestBody),
                 headers: {
-                    'Content-Type': 'application/json', 
+                    'Content-Type': 'application/json',
                     ...options?.headers,
                 },
             }
         })
-        .then((response : T) => response)
-        .catch((ex) => {
-            throw new Error(ex);
-        });;
+            .then((response: T) => response)
+            .catch((ex) => {
+                throw new Error(ex);
+            });;
     }
 
-    public  async PutAsync({
-        endpoint, 
-        requestBody, 
+    public async PutAsync({
+        endpoint,
+        requestBody,
         options,
-    }: IPutInput) : Promise<T> {
+    }: IPutInput): Promise<T> {
         const requestUrl = `${this.baseUrl}/${endpoint}`
         return httpClient({
             url: requestUrl,
@@ -67,21 +67,21 @@ export default class BaseService<T> {
                 method: 'PUT',
                 body: JSON.stringify(requestBody),
                 headers: {
-                    'Content-Type': 'application/json', 
+                    'Content-Type': 'application/json',
                     ...options?.headers,
-                }                
+                }
             }
         })
-        .then((response : T) => response)
-        .catch((ex) => {
-            throw new Error(ex);
-        });;
+            .then((response: T) => response)
+            .catch((ex) => {
+                throw new Error(ex);
+            });;
     }
 
-    public  async DeleteAsync({
-        endpoint, 
+    public async DeleteAsync({
+        endpoint,
         options,
-    }: IDeleteInput) : Promise<T> {
+    }: IDeleteInput): Promise<T> {
         const requestUrl = `${this.baseUrl}/${endpoint}`
         return httpClient({
             url: requestUrl,
@@ -90,15 +90,15 @@ export default class BaseService<T> {
                 method: 'DELETE',
                 body: JSON.stringify({}),
                 headers: {
-                    'Content-Type': 'application/json', 
+                    'Content-Type': 'application/json',
                     ...options?.headers,
-                },                
+                },
             }
         })
-        .then((response : T) => response)
-        .catch((ex) => {
-            throw new Error(ex);
-        });;
+            .then((response: T) => response)
+            .catch((ex) => {
+                throw new Error(ex);
+            });;
     }
 
 }
