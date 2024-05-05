@@ -1,5 +1,3 @@
-import React from "react";
-
 const LeftHero = () => {
   return (
     <div className="h-screen w-3/5 ">

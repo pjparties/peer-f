@@ -1,6 +1,5 @@
 import Auth from "../../components/Auth";
 import LeftHero from "../../components/LeftHero";
-import React from "react";
 
 export const Home = () => {
     return (

@@ -1,8 +1,8 @@
 import React from 'react'
 import * as ReactDOM from "react-dom/client";
 import {
-  createBrowserRouter,
-  RouterProvider,
+    createBrowserRouter,
+    RouterProvider,
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,26 +14,31 @@ import { Preferences } from './pages/Preferences/index.jsx';
 import { startMirage } from './mocks/miragejs/index.js';
 
 import './index.css'
+import { Test } from './pages/Test/index.jsx';
 
-if(import.meta.env.DEV) {
-  startMirage();
+if (import.meta.env.DEV) {
+    startMirage();
 } else {
-  console.log('Enviroment: ', import.meta.env);
+    console.log('Enviroment: ', import.meta.env);
 }
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/chat",
-    element: <Chat />,
-  },
-  {
-    path: "/preferences",
-    element: <Preferences />,
-  }
+    {
+        path: "/",
+        element: <Home />,
+    },
+    {
+        path: "/chat",
+        element: <Chat />,
+    },
+    {
+        path: "/preferences",
+        element: <Preferences />,
+    },
+    {
+        path: "/test",
+        element: <Test />,
+    }
 
 
 ]);
@@ -41,11 +46,11 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <ToastContainer />
-    <div className='w-screen h-screen overflow-hidden'>
+    <React.StrictMode>
+        <ToastContainer />
+        <div className='w-screen h-screen overflow-hidden'>
 
-    <RouterProvider router={router} />
-    </div>
-  </React.StrictMode>,
+            <RouterProvider router={router} />
+        </div>
+    </React.StrictMode>,
 )
