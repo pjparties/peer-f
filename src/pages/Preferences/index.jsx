@@ -5,7 +5,7 @@ const Selector = () => {
     const [selection, setSelection] = useState([
         { type: "Pair Programming", select: false, id: 1 },
         { type: "Mock Interview", select: false, id: 2 },
-        { type: "Code Debug", select: false, id: 3 },f
+        { type: "Code Debug", select: false, id: 3 },
     ]);
     const sendData = () => {
         const selectedIds = selection.map((item) => item.id);

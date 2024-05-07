@@ -9,8 +9,8 @@ export const Chat = () => {
     const [chatMessage, setChatMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [isInRoom, setIsInRoom] = useState(false);
-    const [roomCode, setRoomCode] = useState("room1");
     const [socket, setSocket] = useState(null);
+    const [socketId, setSocketId] = useState("");
 
     // Connect to the socket server
     useEffect(() => {
@@ -18,77 +18,73 @@ export const Chat = () => {
             transports:
                 ['websocket'],
         });
+        if (newSocket) {
+            newSocket.on("connect", () => {
+                console.log("Connected to the server");
+                setSocket(newSocket);
+                setSocketId(newSocket.id);
+            });
+            newSocket.on("searching", (data) => {
+                console.log(data);
+            });
+            newSocket.on("chatStart", (data) => {
+                console.log(data);
+                setIsInRoom(true);
+            });
+        }
+
         return () => {
             newSocket.disconnect();
         };
     }, []);
 
     // Join a room
-    const handleJoinRoom = (roomCode) => {
-        if (!socket) {
-            console.log("You are not connected to a room. Please join a room.");
-            return;
+    const handleJoinRoom = (id) => {
+        if (socket) {
+            socket.emit("start", id)
         }
-        if (!roomCode) {
-            console.log("Please enter a room code to join a room.");
-            return;
+        else {
+            console.log("Socket not connected")
         }
-        socket.emit("joinRoom", roomCode);
-        console.log("Joined room: ", roomCode);
-        setIsInRoom(true);
     };
 
     // Send a message
     const handleSendMessage = () => {
-        if (!chatMessage) {
-            const obj = { message: "Please enter a message to send." };
-            setErrorMessages((prevErrors) => [...prevErrors, obj]);
-            console.log("Please enter a message to send.");
-            return;
+        if (socket && isInRoom) {
+            socket.emit("newMessageToServer", chatMessage);
+            const obj = { sender: "You", message: chatMessage };
+            console.log("Sent message: ", chatMessage);
+            setChatMessage("");
         }
-        if (!isInRoom) {
-            const obj = { message: "Please join a room first." };
-            setErrorMessages((prevErrors) => [...prevErrors, obj]);
-            console.log("Please join a room first.");
-            return;
-        }
-        socket.emit("sendMessage", roomCode, chatMessage);
-        const obj = { sender: "You", message: chatMessage };
-        setMessages((prevMessages) => [...prevMessages, obj]);
-        setChatMessage("");
-        console.log("Sent message: ", chatMessage);
+        // setMessages((prevMessages) => [...prevMessages, obj]);
     };
 
     // Receive a message
     const handleReceiveMessage = () => {
-        socket.on("receiveMessage", (message) => {
-            console.log("idhar aaya: ", message);
-            const obj = { sender: "Stranger", message: message };
-            setMessages((prevMessages) => [...prevMessages, obj]);
-        });
+        if (socketId !== "") {
+            socket.on("newMessageToClient", (data) => {
+                const sender = data.id === socketId ? "You" : "Stranger";
+                const receivedMessage = { sender, message: data.msg };
+                setMessages([...messages, receivedMessage]);
+            });
+        }
     };
 
-    // log messages
-    // useEffect(() => {
-    //   console.log(messages);
-    // }, [messages]);
 
     // Listen for messages
     useEffect(() => {
-        if (socket) {
-            handleReceiveMessage();
-        } else {
-            console.log("You are not connected to a room. Please join a room.");
+        if (isInRoom) {
+            if (socket) {
+                handleReceiveMessage();
+            } else {
+                console.log("You are not connected to a room. Please join a room.");
+            }
         }
     }, [socket]);
 
     // Leave the room
     const handleLeaveRoom = () => {
-        if (socket) {
-            socket.emit("leaveRoom", roomCode);
-            console.log(`User left room ${roomCode}`);
-            setIsInRoom(false);
-        }
+
     };
 
     return (
@@ -134,7 +130,7 @@ export const Chat = () => {
                 <div
                     className=""
                     onClick={() => {
-                        handleJoinRoom(roomCode);
+                        handleJoinRoom(socket.id);
                     }}
                 >
                     <button className="ml-2 rounded-xl border-gray-500 bg-accentdark px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-accentdark">
@@ -150,14 +146,14 @@ export const Chat = () => {
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
                                 e.preventDefault();
-                                handleSendMessage();
+                                () => handleSendMessage();
                             }
                         }}
                         placeholder="Type your message..."
                     />
                     <button
                         className="ml-2 rounded-xl border-gray-500 bg-accent px-4 py-4 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-accent"
-                        onClick={handleSendMessage}
+                        onClick={() => handleSendMessage()}
                     >
                         Send
                     </button>
