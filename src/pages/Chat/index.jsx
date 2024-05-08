@@ -65,7 +65,7 @@ export const Chat = () => {
             socket.on("newMessageToClient", (data) => {
                 const sender = data.id === socketId ? "You" : "Stranger";
                 const receivedMessage = { sender, message: data.msg };
-                setMessages([...messages, receivedMessage]);
+                setMessages((prevMessages) => [...prevMessages, receivedMessage]);
             });
         }
     };
