@@ -56,7 +56,16 @@ export const Chat = () => {
             console.log("Sent message: ", chatMessage);
             setChatMessage("");
         }
-        // setMessages((prevMessages) => [...prevMessages, obj]);
+        else if (!isInRoom) {
+            setErrorMessages([
+                { message: "You are not in a room. Please join a room first." },
+            ]);
+            // setChatMessage("");
+        }
+        else {
+            console.log("Something went wrong either with socket or room")
+            // setChatMessage("");
+        }
     };
 
     // Receive a message
@@ -65,6 +74,7 @@ export const Chat = () => {
             socket.on("newMessageToClient", (data) => {
                 const sender = data.id === socketId ? "You" : "Stranger";
                 const receivedMessage = { sender, message: data.msg };
+                // console.log("Received message: ", receivedMessage);
                 setMessages((prevMessages) => [...prevMessages, receivedMessage]);
             });
         }
@@ -76,9 +86,7 @@ export const Chat = () => {
         if (isInRoom) {
             if (socket) {
                 handleReceiveMessage();
-            } else {
-                console.log("You are not connected to a room. Please join a room.");
-            }
+            } 
         }
     }, [socket]);
 
@@ -120,7 +128,7 @@ export const Chat = () => {
                 </div>
             </div>
             <div className="bottom-row-wrapper ml-0 flex w-full items-center justify-center">
-                <div className="" onClick={handleLeaveRoom}>
+                <div className="" onClick={() => handleLeaveRoom}>
                     <Link href="/home">
                         <button className="ml-2 rounded-xl border-gray-500 bg-warning px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-[#c1121f]">
                             Leave Room
