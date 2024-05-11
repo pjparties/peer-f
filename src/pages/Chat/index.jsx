@@ -1,11 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import io from "socket.io-client";
 
 export const Chat = () => {
     // states for the chat
-    const [errorMessages, setErrorMessages] = useState([]);
     const [chatMessage, setChatMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [isInRoom, setIsInRoom] = useState(false);
@@ -30,6 +29,15 @@ export const Chat = () => {
             newSocket.on("chatStart", (data) => {
                 console.log(data);
                 setIsInRoom(true);
+            });
+            newSocket.on("strangerDisconnected", (data) => {
+                console.log(data);
+                setIsInRoom(false);
+            });
+            newSocket.on("endChat", (data) => {
+                console.log(data);
+                setIsInRoom(false);
+                setMessages([]);
             });
         }
 
@@ -57,9 +65,7 @@ export const Chat = () => {
             setChatMessage("");
         }
         else if (!isInRoom) {
-            setErrorMessages([
-                { message: "You are not in a room. Please join a room first." },
-            ]);
+            console.log("You are not in a room. Please join a room first.");
             // setChatMessage("");
         }
         else {
@@ -70,30 +76,40 @@ export const Chat = () => {
 
     // Receive a message
     const handleReceiveMessage = () => {
-        if (socketId !== "") {
-            socket.on("newMessageToClient", (data) => {
-                const sender = data.id === socketId ? "You" : "Stranger";
-                const receivedMessage = { sender, message: data.msg };
-                // console.log("Received message: ", receivedMessage);
-                setMessages((prevMessages) => [...prevMessages, receivedMessage]);
-            });
-        }
+        socket.on("newMessageToClient", (data) => {
+            const sender = data.id === socketId ? "You" : "Stranger";
+            const receivedMessage = { sender, message: data.msg };
+            console.log("Received message: ", receivedMessage);
+            setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+        });
     };
 
 
     // Listen for messages
     useEffect(() => {
-        if (isInRoom) {
-            if (socket) {
-                handleReceiveMessage();
-            } 
+        if (socket) {
+            handleReceiveMessage()
         }
     }, [socket]);
 
     // Leave the room
     const handleLeaveRoom = () => {
-
-    };
+        if (socket) {
+            if (isInRoom) {
+                socket.emit("stop");
+                setIsInRoom(false);
+                console.log("Left room");
+                setMessages([]);
+            }
+            else {
+                setIsInRoom(false);
+                setMessages([]);
+            }
+        }
+        else {
+            console.log("Socket not connected")
+        };
+    }
 
     return (
         <div className="flex h-screen w-screen flex-col items-center justify-center bg-omeglebg px-8">
@@ -103,16 +119,6 @@ export const Chat = () => {
                 </p>
                 <div className="all-messages-here ml-1">
                     <div className="message transition duration-300 ease-in">
-                        {/* error messages conditionally rendered */}
-                        {messages.length == 0 &&
-                            errorMessages.map((message, index) => (
-                                <div key={index}>
-                                    <span className="font-bold text-warning">Error: </span>
-                                    <text className="font-bold text-warning">
-                                        {message.message}
-                                    </text>
-                                </div>
-                            ))}
                         {/* real messages typed here */}
                         {messages.map((message, index) => (
                             <div key={index}>
@@ -121,19 +127,19 @@ export const Chat = () => {
                                 >
                                     {message.sender === "You" ? "You: " : "Stranger: "}
                                 </span>
-                                <text className="text-here">{message.message}</text>
+                                <input className="text-here" value={message.message} readOnly={true} />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
             <div className="bottom-row-wrapper ml-0 flex w-full items-center justify-center">
-                <div className="" onClick={() => handleLeaveRoom}>
-                    <Link href="/home">
-                        <button className="ml-2 rounded-xl border-gray-500 bg-warning px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-[#c1121f]">
-                            Leave Room
-                        </button>
-                    </Link>
+                <div className="" onClick={() => handleLeaveRoom()}>
+                    {/* <Link href="/"> */}
+                    <button className="ml-2 rounded-xl border-gray-500 bg-warning px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-[#c1121f]">
+                        Leave Room
+                    </button>
+                    {/* </Link> */}
                 </div>
                 <div
                     className=""
