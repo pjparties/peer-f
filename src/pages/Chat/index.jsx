@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
 import io from "socket.io-client";
+
+// TODO:  overflow control on y axis chat
+// TODO:  text wrap messages x axis chat
 
 export const Chat = () => {
     // states for the chat
@@ -117,8 +119,8 @@ export const Chat = () => {
                 <p className="mb-4 ml-1 font-medium text-gray-800">
                     You're now chatting with a random stranger. Say hi!
                 </p>
-                <div className="all-messages-here ml-1">
-                    <div className="message transition duration-300 ease-in">
+                <div className="all-messages-here ml-1 ">
+                    <div className="message transition duration-300 ease-in overflow-auto">
                         {/* real messages typed here */}
                         {messages.map((message, index) => (
                             <div key={index}>
@@ -127,7 +129,7 @@ export const Chat = () => {
                                 >
                                     {message.sender === "You" ? "You: " : "Stranger: "}
                                 </span>
-                                <input className="text-here" value={message.message} readOnly={true} />
+                                <input className="text-here w-full text-wrap break-all" value={message.message} readOnly={true} />
                             </div>
                         ))}
                     </div>
@@ -135,11 +137,9 @@ export const Chat = () => {
             </div>
             <div className="bottom-row-wrapper ml-0 flex w-full items-center justify-center">
                 <div className="" onClick={() => handleLeaveRoom()}>
-                    {/* <Link href="/"> */}
                     <button className="ml-2 rounded-xl border-gray-500 bg-warning px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-[#c1121f]">
                         Leave Room
                     </button>
-                    {/* </Link> */}
                 </div>
                 <div
                     className=""
@@ -160,7 +160,7 @@ export const Chat = () => {
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
                                 e.preventDefault();
-                                () => handleSendMessage();
+                                handleSendMessage(); // Call the handleSendMessage function
                             }
                         }}
                         placeholder="Type your message..."
