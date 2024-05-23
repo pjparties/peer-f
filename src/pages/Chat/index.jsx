@@ -9,6 +9,7 @@ export const Chat = () => {
     const [isInRoom, setIsInRoom] = useState(false);
     const [socket, setSocket] = useState(null);
     const [socketId, setSocketId] = useState("");
+    const [status, setStatus] = useState("Join a room to start chatting...");
 
     // Connect to the socket server
     useEffect(() => {
@@ -18,25 +19,31 @@ export const Chat = () => {
         });
         if (newSocket) {
             newSocket.on("connect", () => {
-                console.log("Connected to the server");
+                // console.log("Connected to the server");
                 setSocket(newSocket);
                 setSocketId(newSocket.id);
+                setStatus("Connected to the server, join a room to start chatting...");
             });
             newSocket.on("searching", (data) => {
-                console.log(data);
+                // console.log(data);
+                setStatus("Searching for a stranger to join...");
             });
             newSocket.on("chatStart", (data) => {
-                console.log(data);
+                // console.log(data);
                 setIsInRoom(true);
+                setStatus("You are now chatting with a stranger, say hi!");
+                setMessages([]);
             });
             newSocket.on("strangerDisconnected", (data) => {
-                console.log(data);
+                // console.log(data);
                 setIsInRoom(false);
+                setStatus("Stranger disconnected, join a room to start chatting...");
             });
             newSocket.on("endChat", (data) => {
-                console.log(data);
+                // console.log(data);
                 setIsInRoom(false);
                 setMessages([]);
+                setStatus("You left the room, join a room to start chatting...");
             });
         }
 
@@ -60,15 +67,17 @@ export const Chat = () => {
         if (socket && isInRoom) {
             socket.emit("newMessageToServer", chatMessage);
             const obj = { sender: "You", message: chatMessage };
-            console.log("Sent message: ", chatMessage);
+            // console.log("Sent message: ", chatMessage);
             setChatMessage("");
         }
         else if (!isInRoom) {
-            console.log("You are not in a room. Please join a room first.");
+            // console.log("You are not in a room. Please join a room first.");
+            setStatus("You are not in a room. Please join a room first.");
             // setChatMessage("");
         }
         else {
-            console.log("Something went wrong either with socket or room")
+            // console.log("Something went wrong either with socket or room")
+            window.alert("Something went wrong either with socket or room");
             // setChatMessage("");
         }
     };
@@ -78,7 +87,7 @@ export const Chat = () => {
         socket.on("newMessageToClient", (data) => {
             const sender = data.id === socketId ? "You" : "Stranger";
             const receivedMessage = { sender, message: data.msg };
-            console.log("Received message: ", receivedMessage);
+            // console.log("Received message: ", receivedMessage);
             setMessages((prevMessages) => [...prevMessages, receivedMessage]);
         });
     };
@@ -97,7 +106,7 @@ export const Chat = () => {
             if (isInRoom) {
                 socket.emit("stop");
                 setIsInRoom(false);
-                console.log("Left room");
+                // console.log("Left room");
                 setMessages([]);
             }
             else {
@@ -106,15 +115,16 @@ export const Chat = () => {
             }
         }
         else {
-            console.log("Socket not connected")
+            // console.log("Socket not connected")
+            window.alert("Socket not connected")
         };
     }
 
     return (
         <div className="flex h-screen w-screen flex-col items-center justify-center bg-omeglebg px-8">
             <div className="chat-container h-4/5 w-full rounded-lg border-x-2 border-y-2 border-gray-400 bg-white overflow-scroll">
-                <p className="mb-4 ml-1 font-medium text-gray-800">
-                    You're now chatting with a random stranger. Say hi!
+                <p className="mb-4 ml-1 font-medium text-gray-800 transition duration-1000 ease-in">
+                    {status}
                 </p>
                 <div className="all-messages-here ml-1 ">
                     {/* real messages typed here */}
