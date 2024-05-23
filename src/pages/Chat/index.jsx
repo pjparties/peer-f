@@ -16,7 +16,7 @@ export const Chat = () => {
     const prefID = useParams().prefId;
 
     useEffect(() => {
-        console.log(prefID);
+        // console.log(prefID);
     }, []);
 
     // Connect to the socket server
