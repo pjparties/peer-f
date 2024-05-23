@@ -2,9 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-// TODO:  overflow control on y axis chat
-// TODO:  text wrap messages x axis chat
-
 export const Chat = () => {
     // states for the chat
     const [chatMessage, setChatMessage] = useState("");
@@ -115,24 +112,22 @@ export const Chat = () => {
 
     return (
         <div className="flex h-screen w-screen flex-col items-center justify-center bg-omeglebg px-8">
-            <div className="chat-container h-4/5 w-full rounded-lg border-x-2 border-y-2 border-gray-400 bg-white">
+            <div className="chat-container h-4/5 w-full rounded-lg border-x-2 border-y-2 border-gray-400 bg-white overflow-scroll">
                 <p className="mb-4 ml-1 font-medium text-gray-800">
                     You're now chatting with a random stranger. Say hi!
                 </p>
                 <div className="all-messages-here ml-1 ">
-                    <div className="message transition duration-300 ease-in overflow-auto">
-                        {/* real messages typed here */}
-                        {messages.map((message, index) => (
-                            <div key={index}>
-                                <span
-                                    className={`${message.sender === "You" ? "font-bold text-user1" : "font-bold text-user2"}`}
-                                >
-                                    {message.sender === "You" ? "You: " : "Stranger: "}
-                                </span>
-                                <input className="text-here w-full text-wrap break-all" value={message.message} readOnly={true} />
-                            </div>
-                        ))}
-                    </div>
+                    {/* real messages typed here */}
+                    {messages.map((message, index) => (
+                        <div key={index} className="message transition duration-300 ease-in mb-1">
+                            <span
+                                className={`${message.sender === "You" ? "font-bold text-user1" : "font-bold text-user2"}`}
+                            >
+                                {message.sender === "You" ? "You: " : "Stranger: "}
+                            </span>
+                            <span className="text-here w-5/6 "> {message.message} </span>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="bottom-row-wrapper ml-0 flex w-full items-center justify-center">
