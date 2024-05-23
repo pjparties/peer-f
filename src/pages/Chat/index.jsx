@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 export const Chat = () => {
     // states for the chat
@@ -10,6 +11,13 @@ export const Chat = () => {
     const [socket, setSocket] = useState(null);
     const [socketId, setSocketId] = useState("");
     const [status, setStatus] = useState("Join a room to start chatting...");
+    
+    // extract preference from url forwarded by /preferences page
+    const prefID = useParams().prefId;
+
+    useEffect(() => {
+        console.log(prefID);
+    }, []);
 
     // Connect to the socket server
     useEffect(() => {

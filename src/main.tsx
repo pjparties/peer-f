@@ -14,9 +14,10 @@ import { Preferences } from './pages/Preferences/index.jsx';
 import { startMirage } from './mocks/miragejs/index.js';
 
 import './index.css'
+import ErrorPage from './pages/Error/index.jsx';
 
 if (import.meta.env.DEV) {
-    startMirage();
+    // startMirage();
 } else {
     console.log('Enviroment: ', import.meta.env);
 }
@@ -25,10 +26,11 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />,
+        errorElement: <ErrorPage />
     },
     {
-        path: "/chat",
-        element: <Chat />,
+        path: "/chat/:prefId",
+        element: <Chat />
     },
     {
         path: "/preferences",
