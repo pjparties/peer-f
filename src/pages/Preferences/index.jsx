@@ -5,18 +5,18 @@ import { useState } from "react";
 const Selector = () => {
     const navigate = useNavigate();
     const [selection, setSelection] = useState([
-        { id: 1 , name: "Pair Programming", select: false},
-        { id: 2 , name: "Mock Interview", select: false},
-        { id : 3 , name: "Code Debug", select: false},
+        { id: 1, name: "Pair Programming", select: false },
+        { id: 2, name: "Mock Interview", select: false },
+        { id: 3, name: "Code Debug", select: false },
     ]);
-    
+
     const currentSelection = selection.filter((item) => item.select === true);
-    
+
     const toggleSelect = (e) => {
         const buttonId = e.target.id;
         const newList = selection.map((item) => {
             if (item.id === parseInt(buttonId)) {
-                return { ...item, select: !selection[buttonId - 1].select};
+                return { ...item, select: !selection[buttonId - 1].select };
             } else {
                 return { ...item, select: false };
             }
@@ -38,8 +38,8 @@ const Selector = () => {
     }
 
     return (
-        <div className="flex h-full flex-col items-center justify-center">
-            <div className="mt-16 gap-2 flex flex-col items-center">
+        <div className="selector flex h-full flex-col items-center justify-center">
+            <div className="mt-8 gap-2 flex flex-col items-center">
                 {selection.map((item) => {
                     return (
                         <button
@@ -53,7 +53,7 @@ const Selector = () => {
                 })}
             </div>
 
-            <div className="mt-16 flex flex-col items-center">
+            <div className="mt-8 flex flex-col items-center">
                 <div onClick={routeChat()}>
                     <button className="border-1 rounded-xl bg-accent px-4 py-2 font-semibold text-white transition duration-500 ease-in-out hover:bg-accentdark ">
                         Start Chatting
@@ -67,17 +67,17 @@ const Selector = () => {
 const PrefDiv = () => {
     return (
         <div>
-            <div className="text-wrapper mb-16 flex flex-col px-6 text-center">
-                <h1 className=" text-4xl mt-10 font-bold text-white ">
+            <div className="right-side flex flex-col px-6 items-center">
+                <h1 className=" text-4xl mt-10 font-bold text-white text-center">
                     Select Your Preferences
                 </h1>
-                <p className="mt-2 text-lg font-normal text-white">
-                    Choose one to get started with finding people that share
+                <p className="mt-2 ml-9 text-lg font-normal text-white">
+                    Choose one of the options to get started with finding people that share
                     your interests.
                 </p>
-            </div>
-            <div className="main-preferences-wrapper">
-                <Selector />
+                <div className="main-preferences-wrapper">
+                    <Selector />
+                </div>
             </div>
         </div>
     );
@@ -89,7 +89,7 @@ export const Preferences = () => {
             <div className="h-full w-3/5 border-r-4 bg-primary">
                 <LeftHero />
             </div>
-            <div className="flex h-screen w-2/5 flex-col items-center bg-secondary">
+            <div className="flex h-screen w-2/5  justify-center flex-col items-center bg-secondary">
                 <PrefDiv />
             </div>
         </div>
