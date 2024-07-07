@@ -1,121 +1,59 @@
-<h1 align="center">Welcome to amazing react boilerplate 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+# Peer-io
 
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
+## Project Overview:
+Peer-io is a decentralized real-time online chat application built for collaboration and enhancing productivity. Select from various activities such as pair programming, mock interviews, code reviews and more. You will be matched with like-minded individuals to collaborate and learn from each other in real-time. You can share your code, ask questions, and get instant feedback from your peers. Peer-io is built with a focus on privacy and security, so you can collaborate with confidence.
+There are no servers involved in the process, so your data is never stored on any third-party servers. Peer-io uses WebSockets to establish a direct peer-to-peer connection between users, ensuring that your data is secure and private. Peer-io is a free and open-source project, and we welcome contributions from the community to help improve the platform.
 
-  <a href="https://twitter.com/anderson.lima.dev" target="_blank">
-    <img alt="Twitter: anderson.lima.dev" src="https://img.shields.io/twitter/follow/andersonlimahw.svg?style=social" />
-  </a>
+##  Backend Repo 
+[Peer-io Backend](https://www.github.com/pjparties/peer-io-backend)
 
-  <br />
-  <img
-   height="32"
-   width="32"
-   src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/vite.svg"
- />
- <img
-   height="32"
-   width="32"
-   src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/react.svg"
- />
- <img
-   height="32"
-   width="32"
-   src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/typescript.svg"
- />
- <img
-   height="32"
-   width="32"
-   src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tailwindcss.svg"
- />
+## Demo:
+![Login / Signup](public/LoginScreen.png)
+![Auth !](public/AuthScreen.png)
+![Select Preferences](public/PrefScreen.png)
+![Chat !](public/ChatScreen.png)
 
+## Usage:
+Peer-io offers a simple and intuitive user interface for uploading and downloading files. Here's how to use it:
+1. Open the Peer-io application in your web browser.
+2. Sign up for an account or log in if you already have one.
+3. Select Preferences and click on start Chat.
+4. Once you are matched with a peer, you can start collaborating in real-time.
 
-> Boilerplate : PWA project using vite, react, zustand, tailwindcss vitest and more!
+## Features:
+- Decentralized chat platform
+- Get matched with like-minded individuals
+- Real-time collaboration
+- Peer-to-peer communication
+- Secure and efficient chats
+- User-friendly interface
 
+## Premium Version:
+Peer-io offers a premium version with additional features, including:
+- High priority matching
+- Unlimited skips and matches
+- Custom filters and preferences
 
-### ✨ [Demo](https://lemon-firebase-chat-sample.vercel.app)
+## Version Info:
+Current version: 0.1.1
+Release date: February 27, 2024
 
-Look a project using this boilerplate
+## Installation:
+To install Peer-io, follow these steps:
+1. Clone the repository from GitHub: `git clone https://github.com/pjparties/peer-io-frontend.git`
+2. Navigate to the project directory: `cd peer-io-frontend`
+3. Install dependencies: `npm install`
+4. Start the application: `npm run dev`
 
-## Using
+## Contributing:
+We welcome contributions from the community to improve Peer-io. To contribute, follow these steps:
+1. Fork the repository on GitHub.
+2. Clone your forked repository to your local machine.
+3. Create a new branch for your contribution: `git checkout -b feature/new-feature`
+4. Make your changes and commit them: `git commit -m "Add new feature"`
+5. Push your changes to your forked repository: `git push origin feature/new-feature`
+6. Create a pull request on the original repository.
+7. Our team will review your pull request and provide feedback.
 
-Use has template
-
-![using-template](./public/demo/using-template.png)
-
-
-Or fork:
-![using-template](./public/demo/using-fork.png)
-
-
-Customize pages how you need!
-
-## ✨ Features ✨:
-
-* Created using vite a very fast front-end tooling 
-
-* Toasts with  react-tostify
-
-* zustand for state management
-
-* Base service to manage your requests
-* Mocks with miragejs
-* Vitest for unit tests and code coverage collect
-
-
-## Boilerplates
-Boilerplates are pre-made templates or frameworks that contain a foundational structure, configurations, and often basic functionalities for a particular type of project. They're designed to help kick-start development by providing a starting point, allowing developers to avoid repetitive setup tasks and focus on building specific features.
-
-You can get more boilerplates in this github profile:
-[click here for more boilerplates 👩🏾‍🎤](https://github.com/Andersonlimahw?tab=repositories&q=boiler&type=&language=&sort=)
-
-## Install
-
-```sh
-npm install
-```
-
-## Run
-
-```sh
-npm run dev
-
-```
-
-Open link in your favorite your browser:
-[http://localhost:5173](http://localhost:5173/)
-
-![](./public/demo/demo-home.png)
-
-
-## Run tests
-
-```sh
-npm run test
-```
-
-## Technologies and strategies:
-[vite](https://vitejs.dev/) <br />
-[pwa](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) <br />
-[react](https://react.dev/learn) <br />
-[zustand](https://github.com/pmndrs/zustand) <br />
-[typescript](https://www.typescriptlang.org/docs/) <br />
-[firebase](https://firebase.google.com/docs) <br />
-[vitest](https://vitest.dev/) <br />
-[tailwindcss](https://tailwindcss.com/docs/animation) <br />
-[miragejs](https://miragejs.com/)<br />
-
-## Author
-
-👤 **Anderson Lima (Lemon 🍋)**
-
-- Website: https://lemondev.dev.br
-- Twitter: [@andersonlimahw](https://twitter.com/andersonlimahw)
-- Github: [@andersonlimahw](https://github.com/andersonlimahw)
-- LinkedIn: [@andersonlimahw](https://linkedin.com/in/andersonlimahw)
-
-## ⭐ Show your support
-give a ⭐ if this project helped you!
+## License:
+This project is licensed under the [MIT License](LICENSE).
