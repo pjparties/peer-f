@@ -13,6 +13,17 @@ import { Preferences } from './pages/Preferences/index.jsx';
 
 import { startMirage } from './mocks/miragejs/index.js';
 
+// clerk
+import { ClerkProvider } from '@clerk/clerk-react';
+
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+
+if (!PUBLISHABLE_KEY) {
+    throw new Error('Missing Publishable Key')
+}
+
+
 import './index.css'
 import ErrorPage from './pages/Error/index.jsx';
 
@@ -44,9 +55,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <ToastContainer />
-        <div className='w-screen h-screen overflow-hidden'>
-            <RouterProvider router={router} />
-        </div>
+        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+            <ToastContainer />
+            <div className='w-screen h-screen overflow-hidden'>
+                <RouterProvider router={router} />
+            </div>
+        </ClerkProvider>
     </React.StrictMode>,
 )
