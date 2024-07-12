@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   // State to manage the navbar's visibility
@@ -13,19 +14,21 @@ const Header = () => {
   return (
     <div className='bg-primary w-screen absolute top-0 flex justify-between items-center py-6 px-24'>
       {/* Logo */}
-      <h1 className='text-secondary font-bold text-2xl'>
-        Peer.io
-      </h1>
+      <Link to='/'>
+        <h1 className='text-secondary font-bold text-2xl'>
+          Peer.io
+        </h1>
+      </Link>
       {/* Desktop Navigation */}
       <ul className='hidden md:flex'>
         <li >
           <span to='/' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100' >
-            HOME
+            Preferences
           </span>
         </li>
         <li>
           <span to='/' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100'>
-            ABOUT
+            My Account
           </span>
         </li>
       </ul>
@@ -45,12 +48,12 @@ const Header = () => {
         {/* Mobile Navigation Items */}
         <li className='my-[12px] mr-[1px]'>
           <span to="/" className='p-4 hover:text-secondary text-lg px-[24px] hover:font-bold text-secondary py-[10px] cursor-pointer duration-100'>
-            HOME
+            Preferences
           </span>
         </li>
         <li className='my-[12px] mr-[1px]'>
           <span to="/" className='p-4 hover:text-secondary text-lg my-[12px] px-[24px] hover:font-bold text-secondary mr-1 py-[10px]  cursor-pointer duration-100'>
-            ABOUT
+            My Account
           </span>
         </li>
       </ul>
