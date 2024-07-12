@@ -2,6 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
+import { VscSend } from "react-icons/vsc";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+
 
 export const Chat = () => {
   // states for the chat
@@ -54,7 +58,7 @@ export const Chat = () => {
         setStatus("You left the room, join a room to start chatting...");
       });
     }
-
+    handleJoinRoom(socketId);
     return () => {
       newSocket.disconnect();
     };
@@ -100,7 +104,6 @@ export const Chat = () => {
     });
   };
 
-
   // Listen for messages
   useEffect(() => {
     if (socket) {
@@ -129,63 +132,57 @@ export const Chat = () => {
   }
 
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center bg-omeglebg px-8">
-      <div className="chat-container h-4/5 w-full rounded-lg border-x-2 border-y-2 border-gray-400 bg-white overflow-scroll">
-        <p className="mb-4 ml-1 font-medium text-gray-800 transition duration-1000 ease-in">
-          {status}
-        </p>
-        <div className="all-messages-here ml-1 ">
-          {/* real messages typed here */}
-          {messages.map((message, index) => (
-            <div key={index} className="message transition duration-300 ease-in mb-1">
-              <span
-                className={`${message.sender === "You" ? "font-bold text-user1" : "font-bold text-user2"}`}
-              >
-                {message.sender === "You" ? "You: " : "Stranger: "}
-              </span>
-              <span className="text-here w-5/6 "> {message.message} </span>
-            </div>
-          ))}
+    <>
+      <Header />
+      <div className="bgscreen flex h-screen w-screen flex-col items-center justify-center bg-primary py-16 px-24 font-Inter">
+        {/* chat container */}
+        <div className="chat-container flex flex-col items-center h-full w-full relative border border-gray-300 bg-white rounded-2xl">
+          {/* status */}
+          <p className="w-fit my-4 font-medium text-gray-800 transition duration-1000 ease-in">
+            {status}
+          </p>
+          {/* all messages */}
+          <div className="all-messages-here ">
+            {/* real messages typed here */}
+            {messages.map((message, index) => (
+              <div key={index} className="message transition duration-300 ease-in mb-1">
+                <span
+                  className={`${message.sender === "You" ? "font-bold text-user1" : "font-bold text-user2"}`}
+                >
+                  {message.sender === "You" ? "You: " : "Stranger: "}
+                </span>
+                <span className="text-here w-5/6 "> {message.message} </span>
+              </div>
+            ))}
+          </div>
+          {/* bottom bar */}
+          <div className="absolute flex bottom-3 bottom-row-wrapper max-w-fit gap-4 h-12 text-zinc">
+            <button onClick={() => handleLeaveRoom()} className="leaveRoom rounded-xl text-base tracking-tight border-gray-100 bg-warning px-4 font-medium text-white transition duration-200 ease-in-out hover:bg-[#c1121f]">
+              Leave Room
+            </button>
+            <input
+              type="text"
+              value={chatMessage}
+              className="input-area bg-[#f2f2f2] min-h-fit pl-4 w-[50vw] lg:w-[60vw] rounded-lg border-2 border-gray-100 transition-all duration-400 ease-in-out"
+              onChange={(e) => setChatMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSendMessage(); // Call the handleSendMessage function
+                }
+              }}
+              placeholder="Type your message..."
+            />
+            <button
+              className="sendButton rounded-xl bg-secondary px-5 py-4 border-gray-100 font-bold text-gray-300 hover:text-white hover:border-white transition duration-200 ease-in-out"
+              onClick={() => handleSendMessage()}
+            >
+              <VscSend />
+            </button>
+          </div>
         </div>
       </div>
-      <div className="bottom-row-wrapper ml-0 flex w-full items-center justify-center">
-        <div className="" onClick={() => handleLeaveRoom()}>
-          <button className="ml-2 rounded-xl border-gray-500 bg-warning px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-[#c1121f]">
-            Leave Room
-          </button>
-        </div>
-        <div
-          className=""
-          onClick={() => {
-            handleJoinRoom(socket.id);
-          }}
-        >
-          <button className="ml-2 rounded-xl border-gray-500 bg-accentdark px-6 py-3 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-accentdark">
-            Join Room
-          </button>
-        </div>
-        <div className="input-area pl-4">
-          <input
-            type="text"
-            value={chatMessage}
-            className="h-16 w-[60vw] rounded-lg border-2 border-gray-400 px-2 py-1"
-            onChange={(e) => setChatMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handleSendMessage(); // Call the handleSendMessage function
-              }
-            }}
-            placeholder="Type your message..."
-          />
-          <button
-            className="ml-2 rounded-xl border-gray-500 bg-accent px-4 py-4 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-accent"
-            onClick={() => handleSendMessage()}
-          >
-            Send
-          </button>
-        </div>
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 };
