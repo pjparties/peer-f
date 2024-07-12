@@ -1,8 +1,8 @@
 import React from 'react'
 import * as ReactDOM from "react-dom/client";
 import {
-    createBrowserRouter,
-    RouterProvider,
+  createBrowserRouter,
+  RouterProvider,
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,7 +20,7 @@ import { ClerkProvider } from '@clerk/clerk-react';
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 if (!PUBLISHABLE_KEY) {
-    throw new Error('Missing Publishable Key')
+  throw new Error('Missing Publishable Key')
 }
 
 
@@ -28,38 +28,36 @@ import './index.css'
 import ErrorPage from './pages/Error/index.jsx';
 
 if (import.meta.env.DEV) {
-    // startMirage();
+  // startMirage();
 } else {
-    console.log('Enviroment: ', import.meta.env);
+  console.log('Enviroment: ', import.meta.env);
 }
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-        errorElement: <ErrorPage />
-    },
-    {
-        path: "/chat/:prefId",
-        element: <Chat />
-    },
-    {
-        path: "/preferences",
-        element: <Preferences />,
-    },
-
-
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/chat/:prefId",
+    element: <Chat />
+  },
+  {
+    path: "/preferences",
+    element: <Preferences />,
+  },
 ]);
 
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-            <ToastContainer />
-            <div className='w-screen h-screen overflow-hidden'>
-                <RouterProvider router={router} />
-            </div>
-        </ClerkProvider>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <ToastContainer />
+      <div className='w-screen h-screen overflow-hidden'>
+        <RouterProvider router={router} />
+      </div>
+    </ClerkProvider>
+  </React.StrictMode>,
 )

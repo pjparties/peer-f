@@ -18,7 +18,7 @@ export const Home = () => {
       </div>
       {/* right container */}
       <div className="container w-1/2 bg-homebg flex justify-center items-center">
-        <img src={HeroConvo} alt="Hero" className="mr-24"/>
+        <img src={HeroConvo} alt="Hero" className="mr-24" />
       </div>
     </main>
   );
