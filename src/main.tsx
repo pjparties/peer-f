@@ -26,6 +26,8 @@ if (!PUBLISHABLE_KEY) {
 
 import './index.css'
 import ErrorPage from './pages/Error/index.jsx';
+import Login from './pages/Auth/login.jsx';
+import Singup from './pages/Auth/signup.jsx';
 
 if (import.meta.env.DEV) {
   // startMirage();
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/signup",
+    element: <Singup />
   },
   {
     path: "/chat/:prefId",
@@ -55,7 +65,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <ToastContainer />
-      <div className='w-screen h-screen overflow-hidden'>
+      <div className='w-screen h-screen'>
         <RouterProvider router={router} />
       </div>
     </ClerkProvider>
