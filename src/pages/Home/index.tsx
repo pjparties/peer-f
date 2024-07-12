@@ -1,6 +1,6 @@
 import Auth from "../../components/Auth";
 import Header from "../../components/Header";
-import HeroConvo from "../../assets/Hero-convo.png";
+import HeroConvo from "../../assets/hero.png";
 
 export const Home = () => {
   return (

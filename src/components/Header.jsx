@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-primary flex justify-between items-center py-6 px-24'>
+    <div className='bg-primary w-screen absolute top-0 flex justify-between items-center py-6 px-24'>
       {/* Logo */}
       <h1 className='text-secondary font-bold text-2xl'>
         Peer.io
@@ -19,12 +19,12 @@ const Header = () => {
       {/* Desktop Navigation */}
       <ul className='hidden md:flex'>
         <li >
-          <span to='/' className='p-4 hover:text-accent hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100' >
+          <span to='/' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100' >
             HOME
           </span>
         </li>
         <li>
-          <span to='/' className='p-4 hover:text-accent hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100'>
+          <span to='/' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100'>
             ABOUT
           </span>
         </li>
@@ -44,12 +44,12 @@ const Header = () => {
       >
         {/* Mobile Navigation Items */}
         <li className='my-[12px] mr-[1px]'>
-          <span to="/" className='p-4 hover:text-accent text-lg px-[24px] hover:font-bold text-secondary py-[10px] cursor-pointer duration-100'>
+          <span to="/" className='p-4 hover:text-secondary text-lg px-[24px] hover:font-bold text-secondary py-[10px] cursor-pointer duration-100'>
             HOME
           </span>
         </li>
         <li className='my-[12px] mr-[1px]'>
-          <span to="/" className='p-4 hover:text-accent text-lg my-[12px] px-[24px] hover:font-bold text-secondary mr-1 py-[10px]  cursor-pointer duration-100'>
+          <span to="/" className='p-4 hover:text-secondary text-lg my-[12px] px-[24px] hover:font-bold text-secondary mr-1 py-[10px]  cursor-pointer duration-100'>
             ABOUT
           </span>
         </li>
