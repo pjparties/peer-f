@@ -1,5 +1,7 @@
 # TODO
+- [ ] Different Chat Rooms
+- [ ] Auth
 - [x] Landing Page
-- [ ] Preferences
-- [ ] Chat Page
-- [ ] Header and Auth
+- [x] Preferences
+- [x] Chat Page
+- [x] Header

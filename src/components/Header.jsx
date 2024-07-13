@@ -22,9 +22,9 @@ const Header = () => {
       {/* Desktop Navigation */}
       <ul className='hidden md:flex'>
         <li >
-          <span to='/' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100' >
+          <Link to='/preferences' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100' >
             Preferences
-          </span>
+          </Link>
         </li>
         <li>
           <span to='/' className='p-4 hover:text-secondary hover:font-bold text-secondary mr-1 py-[10px] px-6 cursor-pointer duration-100'>
@@ -47,9 +47,9 @@ const Header = () => {
       >
         {/* Mobile Navigation Items */}
         <li className='my-[12px] mr-[1px]'>
-          <span to="/" className='p-4 hover:text-secondary text-lg px-[24px] hover:font-bold text-secondary py-[10px] cursor-pointer duration-100'>
+          <Link to="/preferences" className='p-4 hover:text-secondary text-lg px-[24px] hover:font-bold text-secondary py-[10px] cursor-pointer duration-100'>
             Preferences
-          </span>
+          </Link>
         </li>
         <li className='my-[12px] mr-[1px]'>
           <span to="/" className='p-4 hover:text-secondary text-lg my-[12px] px-[24px] hover:font-bold text-secondary mr-1 py-[10px]  cursor-pointer duration-100'>
