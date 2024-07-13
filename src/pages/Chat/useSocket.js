@@ -38,14 +38,14 @@ const useSocket = (setIsInRoom, setStatus, setMessages) => {
         setStatus("You left the room, join a room to start chatting...");
       });
 
+      // handleReceiveMessage
       newSocket.on("newMessageToClient", (data) => {
-        const sender = data.id === socketId ? "You" : "Stranger";
-        const receivedMessage = {
-          sender,
+        const newMessage = {
+          sender: data.id === newSocket.id ? "You" : "Stranger",
           text: data.msg,
-          timestamp: new Date().getTime() // Add timestamp here
+          timestamp: new Date().getTime()
         };
-        setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
       });
     }
 
@@ -70,13 +70,8 @@ const useSocket = (setIsInRoom, setStatus, setMessages) => {
 
   const handleSendMessage = (message) => {
     if (socket) {
+      // Do not add message to state. only emit the message to the server
       socket.emit("newMessageToServer", message);
-      const newMessage = {
-        sender: "you",
-        text: message,
-        timestamp: new Date().getTime()
-      };
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
   };
 
