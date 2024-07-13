@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Home } from './pages/Home/index.js';
-import { Chat } from './pages/Chat/ChatNew.jsx';
+import { Chat } from './pages/Chat/Chat.jsx';
 import { Preferences } from './pages/Preferences/index.jsx';
 
 import { startMirage } from './mocks/miragejs/index.js';

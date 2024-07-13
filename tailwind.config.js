@@ -19,8 +19,8 @@ export default {
         lightzinc: "#e5e7eb",
         accentdark: "#258F90",
         omeglebg: "#9EBCA6",
-        user1: "#04027d",
-        user2: "#f166ae",
+        user1: "#E5F3D7",
+        user2: "#F2F2F2",
         warning: "#e63946",
       },
       backgroundImage: {
