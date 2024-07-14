@@ -14,7 +14,7 @@ const useSocket = (setIsInRoom, setStatus, setMessages) => {
       newSocket.on("connect", () => {
         setSocket(newSocket);
         setSocketId(newSocket.id);
-        setStatus("Connected to the server, join a room to start chatting...");
+        setStatus("Connected to the server...");
       });
 
       newSocket.on("searching", () => {
@@ -29,13 +29,13 @@ const useSocket = (setIsInRoom, setStatus, setMessages) => {
 
       newSocket.on("strangerDisconnected", () => {
         setIsInRoom(false);
-        setStatus("Stranger disconnected, join a room to start chatting...");
+        setStatus("Stranger disconnected, Join a room to start chatting...");
       });
 
       newSocket.on("endChat", () => {
         setIsInRoom(false);
         setMessages([]);
-        setStatus("You left the room, join a room to start chatting...");
+        setStatus("You left the room, Join a room to start chatting...");
       });
 
       // handleReceiveMessage

@@ -10,7 +10,7 @@ import useSocket from "./useSocket.js";
 export const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [isInRoom, setIsInRoom] = useState(false);
-  const [status, setStatus] = useState("Join a room to start chatting...");
+  const [status, setStatus] = useState("Waiting for server connection...");
   const prefID = useParams().prefId;
 
   const { socket, socketId, handleJoinRoom, handleLeaveRoom, handleSendMessage } = useSocket(
@@ -36,6 +36,8 @@ export const Chat = () => {
             isInRoom={isInRoom}
             handleSendMessage={handleSendMessage}
             handleLeaveRoom={handleLeaveRoom}
+            handleJoinRoomInChat={() => handleJoinRoom(socketId)}
+
           />
         </div>
       </div>
