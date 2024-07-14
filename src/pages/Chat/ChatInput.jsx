@@ -24,6 +24,7 @@ const ChatInput = ({ isInRoom, handleSendMessage, handleLeaveRoom, handleJoinRoo
     <div className="flex bottom-row-wrapper max-w-fit gap-4 h-12 my-3 text-zinc">
       <RoomActionButton isInRoom={isInRoom} handleLeaveRoom={handleLeaveRoom} />
       <input
+        disabled={!isInRoom}
         type="text"
         value={chatMessage}
         className="input-area bg-user2 min-h-fit pl-4 w-[50vw] lg:w-[60vw] rounded-lg border-2 border-gray-100 transition-all duration-400 ease-in-out"
