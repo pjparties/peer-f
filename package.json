@@ -1,10 +1,7 @@
 {
-  "name": "boilerplate-react",
-  "author": "@anderson.lima.dev",
+  "name": "peer.io",
+  "author": "@pjparties",
   "keywords": [
-    "andersonlimahw",
-    "anderson.lima.dev",
-    "lemon.dev",
     "react",
     "typescript",
     "boilerplates",
