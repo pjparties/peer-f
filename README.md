@@ -1,23 +1,24 @@
 # Peer-io
 
 ## Project Overview:
-Peer-io is a decentralized real-time online chat application built for collaboration and enhancing productivity. Select from various activities such as pair programming, mock interviews, code reviews and more. 
+Peer-io is a decentralized real-time online chat application built for collaboration and enhancing productivity. 
+Select from various activities such as pair programming, mock interviews, code reviews. 
 You will be matched with like-minded individuals to collaborate and learn from each other in real time. 
-You can share your code, ask questions, and get instant feedback from your peers. Peer-io is built with a focus on privacy and security, so you can collaborate with confidence.
-Peer-io uses WebSockets to establish a direct peer-to-peer connection between users, ensuring that your data is secure and private.
+You can share your code, ask questions, and get instant feedback from your peers.
+
 ##  Backend Repo 
 [Backend](https://www.github.com/pjparties/peer-b)
 
 ## Demo:
 ![Login / Signup](public/LoginScreen.png)
-![Auth !](public/AuthScreen.png)
 ![Select Preferences](public/PrefScreen.png)
 ![Chat !](public/ChatScreen.png)
+![Auth !](public/AuthScreen.png)
 
 ## Usage:
 Peer-io offers a simple and intuitive user interface for uploading and downloading files. Here's how to use it:
 1. Open the Peer-io application in your web browser.
-2. Sign up for an account or log in if you already have one.
+2. Sign up for an account or log in if you already have one (or use as a guest).
 3. Select Preferences and click on start Chat.
 4. Once you are matched with a peer, you can start collaborating in real-time.
 
@@ -29,7 +30,7 @@ Peer-io offers a simple and intuitive user interface for uploading and downloadi
 - Secure and efficient chats
 - User-friendly interface
 
-## Premium Version:
+## Premium Version (Coming Soon):
 Peer-io offers a premium version with additional features, including:
 - High priority matching
 - Unlimited skips and matches
