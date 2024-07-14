@@ -1,98 +1,78 @@
-import { useNavigate } from "react-router-dom";
-import LeftHero from "../../components/LeftHero.jsx";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../../components/Header.jsx";
+import Footer from "../../components/Footer.jsx";
+import debug from "../../assets/debug.png"
+import mock from "../../assets/mock.png"
+import pair from "../../assets/pair.png"
 
-const Selector = () => {
-    const navigate = useNavigate();
-    const [selection, setSelection] = useState([
-        { id: 1, name: "Pair Programming", select: false },
-        { id: 2, name: "Mock Interview", select: false },
-        { id: 3, name: "Code Debug", select: false },
-    ]);
 
-    const currentSelection = selection.filter((item) => item.select === true);
-
-    const toggleSelect = (e) => {
-        const buttonId = e.target.id;
-        const newList = selection.map((item) => {
-            if (item.id === parseInt(buttonId)) {
-                return { ...item, select: !selection[buttonId - 1].select };
-            } else {
-                return { ...item, select: false };
-            }
-        });
-        setSelection(newList);
-    };
-
-    const routeChat = () => {
-        if (currentSelection.length === 0) {
-            return () => {
-                window.alert("Select a preference to continue.");
-            };
-        } else {
-            return () => {
-                // console.log("Routing to chat");
-                navigate(`/chat/${currentSelection[0].id}`);
-            };
-        }
-    }
-
-    return (
-        <div className="selector flex h-full flex-col items-center justify-center">
-            <div className="mt-8 gap-2 flex flex-col items-center">
-                {selection.map((item) => {
-                    return (
-                        <button
-                            id={item.id}
-                            className={`border-1 rounded-xl border-black px-4 py-2 transition duration-200 ease-in-out ${item.select ? "scale-110 bg-primary" : "bg-omeglebg opacity-80"}`}
-                            onClick={toggleSelect}
-                        >
-                            {item.name}
-                        </button>
-                    );
-                })}
-            </div>
-
-            <div className="mt-8 flex flex-col items-center">
-                <div onClick={routeChat()}>
-                    <button className="border-1 rounded-xl bg-accent px-4 py-2 font-semibold text-white transition duration-500 ease-in-out hover:bg-accentdark ">
-                        Start Chatting
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
+const PreferenceCard = ({ title, description, image, location }) => {
+  return (
+    <div className="py-5 px-4 text-zinc flex flex-col justify-evenly shadow-sm rounded-xl border border-secondary/20">
+      <img className="w-16 h-16" src={image} />
+      <h2 className="left-4 top-16 text-base font-bold w-fit leading-tight tracking-tight mt-2">{title}</h2>
+      <p className="w-44 mt-3 text-xs font-medium leading-4 line-clamp-3">{description}</p>
+      <Link to={"/chat/"+location}>
+        <button className="mt-3 px-3 py-2 w-fit hover:scale-105 transition-all duration-200 ease-in-out bg-secondary rounded-lg justify-center items-center text-white text-xs font-semibold">
+          Start Chat
+        </button>
+      </Link>
+    </div>
+  );
 };
 
-const PrefDiv = () => {
-    return (
-        <div>
-            <div className="right-side flex flex-col px-6 items-center">
-                <h1 className=" text-4xl mt-10 font-bold text-white text-center">
-                    Select Your Preferences
-                </h1>
-                <p className="mt-2 ml-9 text-lg font-normal text-white">
-                    Choose one of the options to get started with finding people that share
-                    your interests.
-                </p>
-                <div className="main-preferences-wrapper">
-                    <Selector />
-                </div>
-            </div>
+const PreferenceWindow = () => {
+  const Preferences = [
+    {
+      title: "Pair Programming",
+      description: "Connect to work on a project together, share ideas and learn from each other.",
+      image: pair,
+      location: "1",
+    },
+    {
+      title: "Mock Interview",
+      description: "Got an interview coming up? Practice with someone who can help you prepare.",
+      image: mock,
+      location: "2",
+    },
+    {
+      title: "Code Debug",
+      description: "Stuck on a bug? Get help from someone who can help you debug your code.",
+      image: debug,
+      location: "2",
+    },
+  ];
+  return (
+    <div className="windowcontainer rounded-2xl border border-lightzinc bg-white p-10">
+      <div className="content font-Inter flex flex-col justify-center items-center px-4">
+        <div className="textsection flex-col justify-start gap-2 inline-flex">
+          <h1 className="text-zinc text-xl font-semibold leading-8 tracking-tight">Select your preferences</h1>
+          <p className="w-full text-zinc text-lg font-medium leading-7 tracking-tight">Choose one of the options to get started with finding people that share your interests.</p>
         </div>
-    );
+        {/* Preference Card here */}
+        <div className="cards-container flex flex-row gap-8 justify-center items-center mt-6 w-fit center">
+          {Preferences.map((preference) => (
+            <PreferenceCard
+              key={preference.location}
+              title={preference.title}
+              description={preference.description}
+              image={preference.image}
+              location={preference.location}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export const Preferences = () => {
-    return (
-        <div className="flex flex-row">
-            <div className="h-full w-3/5 border-r-4 bg-primary">
-                <LeftHero />
-            </div>
-            <div className="flex h-screen w-2/5  justify-center flex-col items-center bg-secondary">
-                <PrefDiv />
-            </div>
-        </div>
-    );
+  return (
+    <main className="flex h-screen w-screen flex-col justify-center items-center bg-primary">
+      <Header />
+      <PreferenceWindow />
+      <Footer />
+    </main>
+  );
 };
 
