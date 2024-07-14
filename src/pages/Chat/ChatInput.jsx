@@ -38,7 +38,7 @@ const ChatInput = ({ isInRoom, handleSendMessage, handleLeaveRoom, handleJoinRoo
       />
       {isInRoom
         ? <SendButton isMessageEmpty={isMessageEmpty} onSendMessage={onSendMessage} />
-        : <JoinRoomButton handleJoinRoomInChat={handleJoinRoomInChat} />
+        : <SearchUserButton handleJoinRoomInChat={handleJoinRoomInChat} />
       }
     </div>
   );
@@ -48,21 +48,21 @@ const LeaveRoomButton = ({ handleLeaveRoom }) => (
   <button
     title="Leave room"
     onClick={handleLeaveRoom}
-    className="leaveRoom rounded-xl text-base tracking-tight border-gray-100 bg-warning px-4 font-medium text-white transition duration-200 ease-in-out hover:bg-[#c1121f]"
+    className="leaveRoom rounded-xl text-lg border-gray-100 bg-warning px-5 py-4 font-semibold text-white transition duration-200 ease-in-out hover:bg-[#c1121f]"
   >
     <IoExitOutline />
   </button>
 );
 
 const GoToPreferencesButton = () => (
-  <button
-    title="Go back to preferences"
-    className="leaveRoom rounded-xl text-base tracking-tight border-gray-100 bg-warning px-4 font-medium text-white transition duration-200 ease-in-out hover:bg-[#c1121f]"
-  >
-    <Link to="/preferences">
+  <Link to="/preferences">
+    <button
+      title="Go back to preferences"
+      className="leaveRoom rounded-xl text-lg border-gray-100 bg-warning px-5 py-4 font-semibold text-white transition duration-200 ease-in-out hover:bg-[#c1121f]"
+    >
       <IoHomeOutline />
-    </Link>
-  </button>
+    </button>
+  </Link>
 );
 
 const RoomActionButton = ({ isInRoom, handleLeaveRoom }) => (
@@ -88,9 +88,9 @@ const SendButton = ({ isMessageEmpty, onSendMessage }) => (
   </button>
 );
 
-const JoinRoomButton = ({ handleJoinRoomInChat }) => (
+const SearchUserButton = ({ handleJoinRoomInChat }) => (
   <button
-    title="Join a room again"
+    title="Search user again"
     className="
       sendButton rounded-xl bg-homebg px-5 py-4 font-bold text-zinc
       hover:text-black transition duration-200 ease-in-out
