@@ -11,7 +11,6 @@ import { Home } from './pages/Home/index.js';
 import { Chat } from './pages/Chat/Chat.jsx';
 import { Preferences } from './pages/Preferences/index.jsx';
 
-import { startMirage } from './mocks/miragejs/index.js';
 
 // clerk
 import { ClerkProvider } from '@clerk/clerk-react';
@@ -28,12 +27,6 @@ import './index.css'
 import ErrorPage from './pages/Error/index.jsx';
 import Login from './pages/Auth/login.jsx';
 import Singup from './pages/Auth/signup.jsx';
-
-if (import.meta.env.DEV) {
-  // startMirage();
-} else {
-  console.log('Enviroment: ', import.meta.env);
-}
 
 const router = createBrowserRouter([
   {
