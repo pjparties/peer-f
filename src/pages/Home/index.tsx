@@ -8,7 +8,7 @@ export const Home = () => {
     <main className="Hero-container flex lg:flex-row flex-col h-screen w-full font-Inter">
       {/* left container */}
       <div className="left-container h-full lg:w-1/2 bg-primary flex -mt-20 lg:mt-0 items-center justify-center">
-        <div className="text-container w-3/4 h-1/2 flex-col justify-center items-start lg:ml-24 flex">
+        <div className="text-container w-3/4 h-1/2 flex-col justify-center items-start lg:ml-24 mt-28 lg:mt-0 flex">
           <h1 className="text-secondary text-4xl font-extrabold">Peer.io —</h1>
           <p className="text-zinc text-3xl font-medium pr-16 pb-10">A decentralized real-time chat app for collaboration and productivity.</p>
           <p className="text-zinc text-lg font-medium leading-7 pb-6">You will be matched with like-minded individuals to collaborate and learn from each other in real-time.</p>

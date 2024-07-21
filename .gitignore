@@ -27,3 +27,6 @@ coverage
 ./coverage
 
 .env
+
+dev-dist/
+dev-dist/*
