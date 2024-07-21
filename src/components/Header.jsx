@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-primary w-screen absolute top-0 flex justify-between items-center py-6 px-8 md:px-16 lg:px-24'>
+    <div className='bg-transparent w-screen absolute top-0 flex justify-between items-center py-6 px-8 md:px-16 lg:px-24'>
       {/* Logo */}
       <Link to='/'>
         <h1 className='text-secondary font-bold text-2xl'>
