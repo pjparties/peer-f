@@ -13,7 +13,7 @@ const PreferenceCard = ({ title, description, image, location }) => {
       <h2 className="text-base lg:text-2xl font-bold w-fit leading-tight tracking-tight mt-1 md:mt-2">{title}</h2>
       <p className="w-44 lg:w-52 mt-1 md:mt-3 text-xs md:text-sm lg:text-base lg:font-light font-medium leading-4 line-clamp-3">{description}</p>
       <Link to={"/chat/" + location}>
-        <button className="mt-3 px-3 py-2 w-fit hover:scale-105 transition-all duration-200 ease-in-out bg-secondary rounded-lg justify-center items-center text-white text-xs font-semibold" title="Get Matched with users">
+        <button className="mt-3 px-3 py-2 w-fit hover:scale-105 transition-transform duration-200 ease-in-out bg-secondary rounded-lg justify-center items-center text-white text-xs font-semibold" title="Get Matched with users">
           Start Chat
         </button>
       </Link>

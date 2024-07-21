@@ -14,7 +14,7 @@ const Auth = () => {
                 </div>
                 <div className="buttons-wrapper flex flex-col items-center justify-center gap-4">
                     {/* TODO: Sign IN -> Continue change */}
-                    <SignInButton className="h-12 w-32 rounded-lg bg-accent font-bold text-white transition duration-300 ease-in-out transform hover:scale-110 hover:bg-accentdark"
+                    <SignInButton className="h-12 w-32 rounded-lg bg-accent font-bold text-white transition-colors duration-300 ease-in-out transform hover:scale-110 hover:bg-accentdark"
                     />
                 </div>
             </div>

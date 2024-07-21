@@ -13,7 +13,7 @@ export const Home = () => {
           <p className="text-zinc text-2xl md:text-3xl font-medium pr-2 md:pr-16 pb-4 md:pb-5 lg:pb-10 leading-7">A decentralized real-time chat app for collaboration and productivity.</p>
           <p className="text-zinc text-lg md:text-xl lg:text-2xl font-medium lg:font-light leading-6 md:leading-7 pb-2 md:pb-4 lg:pb-6">Get matched with like-minded individuals to collaborate and learn from each other in real-time.</p>
           <Link to="/preferences">
-            <button title="Start Chatting" className="px-3 py-2 bg-secondary rounded-md justify-center items-center inline-flex text-white text-base font-semibold leading-7 hover:scale-105 transition-all duration-200 ease-in-out">
+            <button title="Start Chatting" className="px-3 py-2 bg-secondary rounded-md justify-center items-center inline-flex text-white text-base font-semibold leading-7 hover:scale-105 transition-transform duration-200 ease-in-out">
               Let&apos;s get started
             </button>
           </Link>
