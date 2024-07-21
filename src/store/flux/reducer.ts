@@ -1,6 +1,6 @@
-import { IState } from "../hooks/use-store";
-import { EActionType, IAction } from "./actions";
-import { initialState } from "./initial-state";
+import { IState } from "../hooks/use-store.js";
+import { EActionType, IAction } from "./actions.js";
+import { initialState } from "./initial-state.js";
 
 const selectedGradientThemeStyles: any = {
     light: "from-zinc-400 to-zinc-600",

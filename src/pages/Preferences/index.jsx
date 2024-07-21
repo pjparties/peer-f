@@ -44,13 +44,13 @@ const PreferenceWindow = () => {
   ];
   return (
     <div className="windowcontainer rounded-2xl border border-lightzinc bg-white p-10">
-      <div className="content font-Inter flex flex-col justify-center items-center px-4">
-        <div className="textsection flex-col justify-start gap-2 inline-flex">
-          <h1 className="text-zinc text-xl font-semibold leading-8 tracking-tight">Select your preferences</h1>
-          <p className="w-full text-zinc text-lg font-medium leading-7 tracking-tight">Choose one of the options to get started with finding people that share your interests.</p>
+      <div className="content font-Inter flex flex-col md:max-w-screen-sm lg:max-w-none justify-center items-center px-4">
+        <div className="textsection w-fit flex-col justify-start gap-2 inline-flex">
+          <h1 className="text-zinc max-w-fit text-xl font-semibold leading-8 tracking-tight">Select your preferences</h1>
+          <p className="max-w-fit text-zinc text-lg font-medium leading-7 tracking-tight">Choose one of the options to get started with finding people that share your interests.</p>
         </div>
         {/* Preference Card here */}
-        <div className="cards-container flex flex-row gap-8 justify-center items-center mt-6 w-fit center">
+        <div className="cards-container flex flex-col md:flex-row gap-2 lg:gap-8 justify-center items-center mt-6 w-fit center">
           {Preferences.map((preference) => (
             <PreferenceCard
               key={preference.location}
@@ -68,7 +68,7 @@ const PreferenceWindow = () => {
 
 export const Preferences = () => {
   return (
-    <main className="flex h-screen w-screen flex-col justify-center items-center bg-primary">
+    <main className="min-h-screen min-w-screen relative flex justify-center items-center bg-primary">
       <Header />
       <PreferenceWindow />
       <Footer />

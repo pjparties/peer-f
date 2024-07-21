@@ -1,5 +1,5 @@
-import Auth from "../../components/Auth";
-import Header from "../../components/Header";
+import Auth from "../../components/Auth.jsx";
+import Header from "../../components/Header.jsx";
 import HeroConvo from "../../assets/hero.png";
 import { Link } from "react-router-dom";
 

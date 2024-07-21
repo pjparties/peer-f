@@ -1,6 +1,6 @@
 import { devtools } from "zustand/middleware";
 import { create } from "zustand";
-import { IAction, initialState, reducer } from "../flux";
+import { IAction, initialState, reducer } from "../flux/index.js";
 
 export type IThemeType = {
     type: 'dark' | 'light' | 'green' | 'blue' | 'purple' | 'red' | 'yellow' | 'pink'
