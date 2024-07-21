@@ -27,8 +27,8 @@ export const Chat = () => {
 
   return (
     <>
-      <Header />
       <div className="bgscreen flex h-screen w-screen flex-col items-center justify-center bg-primary py-16 px-6 md:px-16 lg:px-24 font-Inter">
+        <Header />
         <div className="chat-container flex flex-col items-center h-full w-full relative border border-gray-300 bg-white rounded-2xl">
           <StatusBar status={status} />
           <ChatMessages messages={messages} />
@@ -37,11 +37,10 @@ export const Chat = () => {
             handleSendMessage={handleSendMessage}
             handleLeaveRoom={handleLeaveRoom}
             handleJoinRoomInChat={() => handleJoinRoom(socketId)}
-
           />
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
