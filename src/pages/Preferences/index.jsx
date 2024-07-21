@@ -68,7 +68,7 @@ const PreferenceWindow = () => {
 
 export const Preferences = () => {
   return (
-    <main className="min-h-screen min-w-screen relative flex justify-center items-center bg-primary">
+    <main className="min-h-full min-w-full relative flex justify-center items-center bg-primary">
       <Header />
       <PreferenceWindow />
       <Footer />
