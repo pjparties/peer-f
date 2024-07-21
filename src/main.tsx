@@ -58,7 +58,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <ToastContainer />
-      <div className='w-screen h-screen'>
+      <div className='w-[calc(100dvw)] h-[calc(100dvh)]'>
         <RouterProvider router={router} />
       </div>
     </ClerkProvider>
