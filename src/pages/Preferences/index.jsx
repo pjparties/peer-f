@@ -43,10 +43,10 @@ const PreferenceWindow = () => {
     },
   ];
   return (
-    <div className="windowcontainer rounded-2xl border border-lightzinc bg-white p-10">
+    <div className="windowcontainer my-28 rounded-2xl border border-lightzinc bg-white mx-10 py-6 md:py-10 md:px-10">
       <div className="content font-Inter flex flex-col md:max-w-screen-sm lg:max-w-none justify-center items-center px-4">
-        <div className="textsection w-fit flex-col justify-start gap-2 inline-flex">
-          <h1 className="text-zinc max-w-fit text-xl font-semibold leading-8 tracking-tight">Select your preferences</h1>
+        <div className="textsection w-fit flex-col text-center justify-start gap-2 inline-flex">
+          <h1 className="text-zinc text-xl font-semibold leading-8 tracking-tight">Select your preferences</h1>
           <p className="max-w-fit text-zinc text-lg font-medium leading-7 tracking-tight">Choose one of the options to get started with finding people that share your interests.</p>
         </div>
         {/* Preference Card here */}
