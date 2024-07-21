@@ -4,7 +4,7 @@ import io from "socket.io-client";
 const useSocket = (setIsInRoom, setStatus, setMessages) => {
   const [socket, setSocket] = useState(null);
   const [socketId, setSocketId] = useState("");
-  const backendUrl = import.meta.env.VITE_BACKEND_URL ? import.meta.env.VITE_BACKEND_URL : "localhost:8000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const newSocket = io(backendUrl, {
       transports: ['websocket'],
