@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaUserPlus } from "react-icons/fa";
+import { RiUserSearchFill } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
 import { MdExitToApp } from "react-icons/md";
 import { IoHome } from "react-icons/io5";
@@ -93,7 +93,7 @@ const SearchUserButton = ({ handleJoinRoomInChat }) => (
     "
     onClick={handleJoinRoomInChat}
   >
-    <FaUserPlus />
+    <RiUserSearchFill />
   </button>
 );
 
